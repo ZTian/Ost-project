@@ -1,0 +1,15 @@
+{% if form.non_field_errors %}
+  <div class="non-field-errors">
+    {% for err in form.non_field_errors %}
+      <div class="col-sm-offset-2 col-sm-10">
+          <p class="form-error">{{ err }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% for field in form %}
+    <div class="form-group">
+        <label class="control-labe col-sm-2">{{ field.label_tag }} </label>
+        <div class="col-sm-10">{{ field }}</div>
+    </div>
+{% endfor %}

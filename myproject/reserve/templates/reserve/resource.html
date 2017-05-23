@@ -1,0 +1,43 @@
+{% extends 'reserve/base.html' %}
+
+{% block body %}
+    <img src="{{ resource.resource_logo }}">
+    <p>{{ resource.resource_description }}</p>
+    <h1><a href="{% url 'reserve:rss' resource.id %}">{{ resource.title }}</a> </h1>
+    <li><a href="{% url 'reserve:reserve-resource' resource.id %}">Make a reservation</a> </li>
+    {% if request.user.username == resource.resource_owner.username %}
+        <li><a href="{% url 'reserve:resource-update' resource.id %}">Edit resource</a> </li>
+    {% endif %}
+    <h3>Owned by user: {{ resource.resource_owner.username }}</h3>
+
+    <ul>
+        <li>Available time start: {{ resource.start_time }}</li>
+        <li>Available time end: {{ resource.end_time }}</li>
+    </ul>
+
+    {% if tag_list %}
+        <h2>Tags:</h2>
+        {% for tag in tag_list %}
+            <ul>
+                <li><a href="{% url 'reserve:tag-detail' tag.id %}">{{ tag.title }}</a> </li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        <h2>No tag</h2>
+    {% endif %}
+
+    {% if reservation_list %}
+        <h2>Current and upcoming reservations:</h2>
+        {% for reservation in reservation_list %}
+            <ul>
+                <li>Reserved  by: {{ reservation.owner.username }}</li>
+                <li>Reservation date: {{ reservation.date_time }}</li>
+                <li>Reservation time: {{ reservation.start_time }}</li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        <h2>No reservations</h2>
+    {% endif %}
+
+
+{% endblock %}

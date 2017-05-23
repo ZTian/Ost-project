@@ -1,0 +1,15 @@
+{% extends 'reserve/base.html' %}
+
+{% block body %}
+    <h1>Information about {{tag.title}}</h1>
+
+
+    <h3>Here are all related resources:</h3>
+    <ul>
+        {% for resource in all_resources %}
+        <li>{{ resource.title }}</li>
+        {% endfor %}
+    </ul>
+</br>
+
+{% endblock %}

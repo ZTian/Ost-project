@@ -1,0 +1,49 @@
+{% extends 'reserve/base.html' %}
+
+{% block body %}
+    {% if all_reservations %}
+        <h3>Here are all reservations:</h3>
+        <ul>
+            {% for reservation in all_reservations %}
+                {% if reservation.owner.username == request.user.username %}
+                    <li><a href="{% url 'reserve:detail' reservation.id %}">{{ reservation.resource.title }}</a> </li>
+                    reserved from {{reservation.start_time}} <a href="{% url 'reserve:reserve_delete' reservation.id %}">Delete</a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        </br>
+    {% else %}
+        <h3>No reservations</h3>
+    {% endif %}
+
+    {% if zip_all %}
+        <h3>Here are all resources:</h3>
+        <ul>
+            {% for ab in zip_all %}
+                {% if ab.0.resource_owner.username == request.user.username %}
+                    <li><a href="{% url 'reserve:resource' ab.0.id %}">{{ ab.0.title }}</a> </li>
+                {% else %}
+                    <li>{{ ab.0.title }}</li>
+                {% endif %}
+                <li>Reserved for {{ ab.1 }} times</li>
+            {% endfor %}
+        </ul>
+        </br>
+    {% else %}
+        <h3>No Resource!</h3>
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

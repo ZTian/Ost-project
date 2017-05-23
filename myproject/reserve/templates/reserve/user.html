@@ -1,0 +1,31 @@
+{% extends 'reserve/base.html' %}
+
+{% block body %}
+    <h1>Information about {{user.username}}</h1>
+
+    {% if all_reservations %}
+        <h3>Here are all reservations:</h3>
+        <ul>
+            {% for reservation in all_reservations %}
+                <li>{{ reservation.resource.title }}</li>
+                reserved from {{reservation.start_time}}
+            {% endfor %}
+        </ul>
+        </br>
+    {% else %}
+        <h3>No reservations</h3>
+    {% endif %}
+
+    {% if all_resources %}
+        <h3>Here are all resources:</h3>
+        <ul>
+            {% for resource in all_resources %}
+                <li>{{ resource.title }}</li>
+            {% endfor %}
+        </ul>
+        </br>
+    {% else %}
+        <h3>No Resource!</h3>
+    {% endif %}
+
+{% endblock %}

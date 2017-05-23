@@ -1,0 +1,29 @@
+{% extends 'reserve/base.html' %}
+
+{% block body %}
+    <div class="col-sm-6 col-sm-offset-3">
+    <h1>Delete a reservation</h1>
+    <hr/>
+
+    <form method="post" action="" enctype="multipart/form-data">
+        <p>Are sure you want to delete: </p>
+        {% csrf_token %}
+        {{ reservation | linebreaks }}
+        <input type="submit" class="btn btn-default" value="Confirm" >
+        <a href="{% url 'reserve:index' %}" class="btn btn-default">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

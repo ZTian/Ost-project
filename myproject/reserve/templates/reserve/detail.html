@@ -1,0 +1,13 @@
+{% extends 'reserve/base.html' %}
+
+{% block body %}
+    <h1><a href="{% url 'reserve:resource' reservation.resource.id %}">{{ reservation.resource.title }}</a></h1>
+<h3>Reserved by user: <a href="{% url 'reserve:user-detail' reservation.owner.username %}">{{ reservation.owner.username }}</a></h3>
+
+    <ul>
+        <li>Reservation date: {{ reservation.date_time }}</li>
+        <li>Reservation start time: {{ reservation.start_time }}</li>
+        <li>Reservation end time: {{ reservation.end_time }}</li>
+    </ul>
+
+{% endblock %}
